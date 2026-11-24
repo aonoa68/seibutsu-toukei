@@ -1,0 +1,192 @@
+---
+title: "read data to R"
+output: html_document
+date: "2023-04-28"
+---
+## Rでのデータの読み込み
+
+Rを立ち上げ、コンソール画面に
+
+```{r}
+data(iris)
+```
+
+と入力してください。
+特に変化はありませんが、これで”iris”データが読み込まれました。
+
+## データirisについて
+基本パッケージである「datasets」に含まれている。
+```{r}
+library(datasets)
+data(package = "datasets")
+```
+
+とすれば、datasetsパッケージに含まれるデータ一覧が表示される。
+
+## データの概要を捉える
+以下のように入力すると、データの概要がわかります。
+```{r}
+dim(iris) #irisデータセットの行数と列数を表示する
+str(iris) #irisデータの構造を表示する。
+summary(iris) #irisデータの列毎の集計値を表示する
+head(iris) #データの最初6行を表示する
+```
+
+## 中央値/平均値を求める
+Rの命令の基本構造は、 関数(データ, 諸条件)　となっている。
+以下のように命令すると、irisデータの1〜4列目(Sepal Length, Sepal Width, Petal Length, Petal Width)のそれぞれの平均値、中央値が出力される。
+```{r}
+#平均値
+mean(iris[,1])
+mean(iris[,2])
+mean(iris[,3])
+mean(iris[,4])
+#中央値
+median(iris[,1])
+median(iris[,2])
+median(iris[,3])
+median(iris[,4])
+```
+
+iris[, 1]で１列目のデータのみ指定できる。
+iris$Sepal.Lengthとしても同じデータを指定できる。(ex. mean(iris$Sepal.Length))
+iris[1, ]であれば1行目のデータのみ指定。
+一般化すると、data[行, 列]という構造になっている。
+
+```{r}
+max(iris[,1]) #最大値 
+min(iris[,1]) #最小値
+quantile(iris$Sepal.Length, 0.25)  #第1四分位数
+quantile(iris$Sepal.Length, 0.75)  #第3四分位数
+
+# Sepal.Lengthの四分位範囲を計算する
+q <- quantile(iris$Sepal.Length, c(0.25, 0.75), na.rm = TRUE) 
+q[2] - q[1]
+
+var(iris$Sepal.Length, na.rm = TRUE)  #分散
+sd(iris$Sepal.Length, na.rm = TRUE)  #標準偏差
+```
+na.rm = TRUEオプションは、NA値を含む行を無視するように指示。
+
+## ヒストグラムを描く
+```{r}
+hist(iris[,1])
+```
+
+```{r}
+hist(iris[,1], breaks = "Sturges", main = "Sepal Length", xlab = "Length (cm)")
+```
+
+## 箱ひげ図を描く
+
+```{r}
+boxplot(iris[,1])
+```
+
+```{r}
+boxplot(iris[,1], main = "Sepal Length Boxplot", ylab = "Length (cm)")
+```
+```{r}
+boxplot(Petal.Length ~ Species, data = iris,         main = "Petal Length by Species", xlab = "Species", ylab = "Petal Length")
+```
+## 散布図を描く
+
+```{r}
+plot(iris$Sepal.Length, iris$Sepal.Width, main = "Sepal Length vs. Sepal Width", xlab = "Length (cm)", ylab = "Width (cm)")
+```
+
+ggplot2ライブラリーというグラフ描画に優れたライブラリーを利用して描画することも可能。
+ggplot()が描画するデータを指定し、そこに”+”で描画のための情報を追加していく。
+aes: “ aesthetics”の略称。x軸にはSepal.Length、y軸にはSepal.Widthを使用。
+geom_point: 散布図であることを指定。
+Labs: ラベルの情報指定。
+```{r}
+install.packages("ggplot2",dep=T,repos = 'http://cran.us.r-project.org')
+library(ggplot2)
+ggplot(data = iris, aes(x = Sepal.Length, y = Sepal.Width)) +geom_point() + labs(title = "Sepal Length vs. Sepal Width",
+x = "Length(cm)", y = "Width(cm)")
+
+```
+
+種類で色分けしたいときは以下。
+```{r}
+ggplot(data = iris, aes(x = Sepal.Length, y = Sepal.Width, color = Species)) +
+  geom_point() +
+  labs(title = "Scatterplot of Sepal Length and Width",
+       x = "Sepal Length", y = "Sepal Width",
+       color = "Species")
+```
+
+## グラフの説明を日本語にしたい
+Windowsの場合は、文字化けしないが、Macは文字化けする。
+```{r}
+#標準グラフ描画の場合
+par(family = "HiraKakuProN-W3")
+```
+とグラフを描く命令コードの前に実行する。
+
+```{r}
+theme_set( theme_bw(base_family = "HiraKakuProN-W3")) 
+```
+とグラフを描く命令コードの前に実行する。
+
+```{r}
+par(family = "HiraKakuProN-W3")
+plot(iris$Sepal.Length, iris$Sepal.Width, main = "ガクの長さと幅", xlab = "Length (cm)", ylab = "Width (cm)")
+```
+
+```{r}
+theme_set( theme_bw(base_family = "HiraKakuProN-W3"))
+ggplot(data = iris, aes(x = Sepal.Length, y = Sepal.Width, color = Species)) +geom_point() +labs(title = "ガクの長さと幅",x = "Sepal Length", y = "Sepal Width",color = "Species")
+```
+
+## csvファイルを読み込む
+
+あらかじめ
+```{r}
+getwd()
+```
+として、出力された場所(Rのワーキングディレクトリ)に,ファイルiris.csvを置く。
+```{r}
+data<-read.csv("iris.csv", header=T, row.names=1)
+```
+もしくは、ファイルパスを""内に入れる。
+
+## クリップボード上のデータをRに読み込む(windows)
+1. irisデータ全体を選択してコピー
+2. コピーした状態のまま
+3. Rの画面に,
+
+data<-read.table(“clipboard", header=T, row.names=1)
+
+と打ち込む。
+あるいは、手順1以前にRコンソールにコピペして、実行しない状態にしておく。
+4. エンターキーを押してコードを実行する。
+5. 
+
+```{r}
+head(data)
+```
+
+として、データが読み込めたか確認する。
+-head(iris)とした状態と同じ状態になればOK
+
+
+## クリップボード上のデータをRに読み込む(Mac)
+1. irisデータ全体を選択してコピー
+2. コピーした状態のまま
+3. Rの画面に,
+
+data<-read.table(pipe("pbpaste"),header=T, row.names=1)
+
+と打ち込む。
+あるいは、手順1以前にRコンソールにコピペして、実行しない状態にしておく。
+4. エンターキーを押してコードを実行する。
+5. 
+
+```{r}
+head(data)
+```
+
+として、データが読み込めたか確認する。
+-head(iris)とした状態と同じ状態になればOK

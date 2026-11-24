@@ -1,0 +1,76 @@
+site_name: 生物統計学
+site_description: 立教大学「生物統計学」2025年度 授業資料（過去の担当授業）
+site_author: 小野原 彩香
+site_url: https://aonoa68.github.io/seibutsu-toukei/
+repo_url: https://github.com/aonoa68/seibutsu-toukei
+repo_name: aonoa68/seibutsu-toukei
+
+theme:
+  name: material
+  language: ja
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: deep purple
+      accent: deep purple
+      toggle:
+        icon: material/weather-night
+        name: ダークモードに切り替え
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: deep purple
+      accent: deep purple
+      toggle:
+        icon: material/weather-sunny
+        name: ライトモードに切り替え
+  features:
+    - navigation.tracking
+    - navigation.top
+    - navigation.footer
+    - search.suggest
+    - search.highlight
+    - toc.follow
+  icon:
+    repo: fontawesome/brands/github
+
+plugins:
+  - search:
+      lang:
+        - ja
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - tables
+  - attr_list
+  - md_in_html
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - toc:
+      permalink: true
+
+extra_css:
+  - stylesheets/extra.css
+
+nav:
+  - ホーム: index.md
+  - 各回の資料:
+      - "第1回 イントロダクション（対面）": week01.md
+      - "第2回 1変数データの要約（対面）": week02.md
+      - "第3回 記述統計と推測統計": week03.md
+      - "第4回 2変数データの要約": week04.md
+      - "第5回 離散型確率変数": week05.md
+      - "第6回 連続型確率変数": week06.md
+      - "第7回 母集団と標本": week07.md
+      - "第8回 推定の基礎": week08.md
+      - "第9回 仮説検定の考え方": week09.md
+      - "第10回 適合度と独立性の検定": week10.md
+      - "第11回 分散分析①": week11.md
+      - "第12回 分散分析②": week12.md
+      - "第13回 主成分分析": week13.md
+      - "第14回 最尤法（対面）": week14.md
+  - 担当授業の一覧（Teaching）: https://aonoa68.github.io/teaching/
+
+copyright: © 小野原 彩香 — 立教大学「生物統計学」（2023〜2025年度）
