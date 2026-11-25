@@ -4,7 +4,9 @@
 
 ## 解説動画
 
-<a class="video-card" href="https://www.youtube.com/watch?v=_038PXQPa_Q" target="_blank" rel="noopener"><img src="https://i.ytimg.com/vi/_038PXQPa_Q/hqdefault.jpg" alt="" loading="lazy"><span><strong>適合度の検定と独立性の検定</strong><small>YouTube で再生する（新しいタブで開きます）</small></span></a>
+<div class="video-wrap"><iframe src="https://www.youtube-nocookie.com/embed/_038PXQPa_Q" title="適合度の検定と独立性の検定" loading="lazy" allowfullscreen allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe></div>
+
+[YouTube で見る：適合度の検定と独立性の検定](https://www.youtube.com/watch?v=_038PXQPa_Q)
 
 ## 資料
 

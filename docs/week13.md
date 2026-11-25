@@ -4,7 +4,9 @@
 
 ## 解説動画
 
-<a class="video-card" href="https://www.youtube.com/watch?v=AEIxuIiJUHc" target="_blank" rel="noopener"><img src="https://i.ytimg.com/vi/AEIxuIiJUHc/hqdefault.jpg" alt="" loading="lazy"><span><strong>主成分分析</strong><small>YouTube で再生する（新しいタブで開きます）</small></span></a>
+<div class="video-wrap"><iframe src="https://www.youtube-nocookie.com/embed/AEIxuIiJUHc" title="主成分分析" loading="lazy" allowfullscreen allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe></div>
+
+[YouTube で見る：主成分分析](https://www.youtube.com/watch?v=AEIxuIiJUHc)
 
 ## 資料
 

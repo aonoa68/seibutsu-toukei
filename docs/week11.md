@@ -4,7 +4,9 @@
 
 ## 解説動画
 
-<a class="video-card" href="https://www.youtube.com/watch?v=yoecRX1cWRo" target="_blank" rel="noopener"><img src="https://i.ytimg.com/vi/yoecRX1cWRo/hqdefault.jpg" alt="" loading="lazy"><span><strong>分散分析1</strong><small>YouTube で再生する（新しいタブで開きます）</small></span></a>
+<div class="video-wrap"><iframe src="https://www.youtube-nocookie.com/embed/yoecRX1cWRo" title="分散分析1" loading="lazy" allowfullscreen allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe></div>
+
+[YouTube で見る：分散分析1](https://www.youtube.com/watch?v=yoecRX1cWRo)
 
 ## 資料
 
